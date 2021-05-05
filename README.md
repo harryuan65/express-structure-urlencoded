@@ -19,5 +19,5 @@ nodemon app.js
     ```
 
 4. 可以先把41行註解拿掉，找 log 中的 headers 那邊
-5. 找到 'Content-Type' 'application/x-www-form-urlencoded` 這行，就是他害的
+5. 找到 `Content-Type`, `application/x-www-form-urlencoded` 這行，就是他害的
 6. 把第 7 行註解拿掉，會發現正常運作了
