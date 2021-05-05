@@ -64,16 +64,25 @@ app.get('/pokemon', function(req, res){
 
 ### urlencoded????
 
-1. 到 `localhost:5000/login` 取得登入頁面
-2. 填完資料送出
-3. 會發現這46, 47兩行會壞掉
+> 每次看人家 express 範例都有 `app.use(express.urlencoded({extended: true})` 是殺小？
+
+用這個專案實驗一下這些步驟：
+
+1. 啟動 `nodemon app.js`
+2. 到 `localhost:5000/login` 取得登入頁面
+3. 填完資料送出
+4. 會發現這46, 47兩行會壞掉
 
     ```javascript
-      var email = req.body.email;
+      var email = req.body.email; //email is not a function for undefined 
       var password = req.body.password;
     ```
 
-4. 可以先把41行註解拿掉，找 log 中的 headers 那邊
-5. 找到 `Content-Type`, `application/x-www-form-urlencoded` 這行，就是他害的
+4. 可以先把41行註解拿掉，重新填一次表，找 log 中的 headers 那邊
+5. 找到 `Content-Type`, `application/x-www-form-urlencoded` 這行
 6. 把第 7 行註解拿掉，會發現正常運作了
-7. 因為 express 的
+
+因為表單送出時，預設是送出 `application/x-www-form-urlencoded` 這個型態的資料給伺服器。
+但是 express 很笨，預設他並沒有辦法看懂什麼這種型態的資料。
+所以必須要使用一個叫做 `express.urlencoded({extended: true})` 的工具(這個東西是一種 中介軟體，middleware)，他會在所有的請求進來時，先幫我們解析請求的資料，並且放到 `req.body` 裡面，之後我們才可以取得 `req.body.email` 的內容。
+
