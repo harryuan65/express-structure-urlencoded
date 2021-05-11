@@ -1,5 +1,7 @@
 # Express Tutorial: 基本架構、為何要用 urlencoded
 
+你好，我也不知道你為什麼會找到我這個專案。不過你既然都來了，請喝杯茶逛逛吧～
+
 ## Setup
 
 ```bash
